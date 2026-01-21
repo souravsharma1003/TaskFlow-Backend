@@ -965,13 +965,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - Initial work - [GitHub](https://github.com/yourusername)
+- **SOURAV SHARMA** - Initial work - [GitHub](https://github.com/souravsharma1003)
 
 ---
 
 ## 📧 Support
 
-For support, email support@taskflow.com or open an issue on GitHub.
+For support, email souravsharma1003@gmail.com or open an issue on GitHub.
 
 ---
 
@@ -983,7 +983,7 @@ For support, email support@taskflow.com or open an issue on GitHub.
 
 ---
 
-**Last Updated:** January 2024
+**Last Updated:** January 2026
 **Version:** 1.0.0
 
 ---
