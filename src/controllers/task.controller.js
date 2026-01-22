@@ -13,8 +13,16 @@ module.exports.createTask=wrapAsync(async(req,res)=>{
 module.exports.getTask=wrapAsync(async(req,res)=>{
     const userId=req.user.userId;
     const {projectId}=req.params;
-    const tasks=await getTasksService(projectId,userId);
-    res.status(200).json(tasks);
+    const{page=1,limit=10}=req.query;
+    const {tasks,totalTasks,totalPages}=await getTasksService(projectId,userId,page,limit);
+    res.status(200).json({
+        tasks,
+        pagination:{
+            totalTasks,
+            currentPage:page,
+            totalPages
+        }
+    });
 })
 
 module.exports.updateTaskStatus=wrapAsync(async(req,res)=>{

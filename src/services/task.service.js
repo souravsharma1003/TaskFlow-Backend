@@ -32,7 +32,7 @@ module.exports.createTaskService = async (title, projectId, userId) => {
     return task;
 };
 
-module.exports.getTasksService=async(projectId,userId)=>{
+module.exports.getTasksService=async(projectId,userId,page,limit)=>{
     const project=await projectModel.findById(projectId);
     if(!project){
         throw new ExpressError("Not found",404);
@@ -48,8 +48,15 @@ module.exports.getTasksService=async(projectId,userId)=>{
     if(!isOwner&&!isMember){
         throw new ExpressError("Forbidden",403);
     }
-    const tasks=await taskModel.find({project:projectId})
-    return tasks;
+    page=Number(page);
+    limit=Number(limit);
+    const skip=(page-1)*limit;
+    const tasks=await taskModel.find({project:projectId}).skip(skip).limit(limit);
+    const totalTasks = await taskModel.countDocuments({
+        project: projectId
+    });
+    const totalPages=Math.ceil(totalTasks/limit);
+    return {tasks,totalTasks,totalPages};
 }
 
 module.exports.updateTaskStatusService = async (userId, taskId, status) => {
