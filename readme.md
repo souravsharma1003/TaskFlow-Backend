@@ -454,12 +454,12 @@ Authorization: Bearer <token>
 ```
 
 **Query Parameters:**
+- `page` (integer, optional): Page number for pagination (default: 1)
+- `limit` (integer, optional): Items per page (default: 10)
 - `status` (string, optional): Filter by status (`pending`, `in-progress`, `completed`)
 - `priority` (string, optional): Filter by priority (`low`, `medium`, `high`)
 - `assignee` (string, optional): Filter by assignee user ID
 - `dueDate` (string, optional): Filter by due date (ISO format)
-- `page` (integer, optional): Page number (default: 1)
-- `limit` (integer, optional): Items per page (default: 10)
 
 **Success Response (200 OK):**
 ```json
@@ -480,11 +480,17 @@ Authorization: Bearer <token>
     }
   ],
   "pagination": {
-    "page": 1,
-    "limit": 10,
-    "total": 15
+    "totalTasks": 15,
+    "currentPage": 1,
+    "totalPages": 2
   }
 }
+```
+
+**Example Request with Pagination:**
+```bash
+curl -H "Authorization: Bearer <token>" \
+  "http://localhost:5000/projects/proj001/tasks?page=2&limit=5"
 ```
 
 ### Get Task by ID
