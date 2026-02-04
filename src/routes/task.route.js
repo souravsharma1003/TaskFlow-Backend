@@ -5,7 +5,7 @@ const validateTaskSchema = require("../middlewares/taskSchemaValidation.middleWa
 const validateUpdateTaskSchema = require("../middlewares/updateTaskValidation.middleware");
 const validateReassignTask = require("../middlewares/taskReassignSchemaValidation.middleware");
 
-const taskRouter=express.Router();
+const taskRouter=express.Router({mergeParams:true});
 
 taskRouter.post("/",authUser,validateTaskSchema,createTask);
 taskRouter.get("/",authUser,getTask);

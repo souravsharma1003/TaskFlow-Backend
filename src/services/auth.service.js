@@ -37,7 +37,11 @@ module.exports.loginUserService=async(email,password)=>{
 module.exports.generateToken=(user)=>{
     const token=jwt.sign({
         userId:user._id,
-        email:user.email
+        email:user.email,
+        name:{
+            firstName:user.name.firstName,
+            lastName:user.name.lastName
+        }
     },
     process.env.JWT_SECRET,
     {expiresIn:"7d"}

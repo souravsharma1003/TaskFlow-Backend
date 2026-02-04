@@ -4,9 +4,15 @@ const ExpressError=require("./utils/ExpressError.util");
 const authRouter=require("./routes/auth.route");
 const projectRouter=require("./routes/project.route");
 const taskRouter = require("./routes/task.route");
+const cors=require("cors");
+require("dotenv").config();
 
 const app=express();
 
+app.use(cors({
+    origin:process.env.CLIENT_URL,
+    credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
